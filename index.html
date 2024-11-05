@@ -3,55 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume - Urooj Muhammad Nazeer</title>
+  <title>Dynamic Resume Builder</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="resume-container">
-    <header>
-      <img src="uroojid.jpeg" alt="Urooj Muhammad Nazeer" class="profile-pic">
-      <h1>Urooj Muhammad Nazeer</h1>
-      <p class="title">Computer Science Student | Coding Enthusiast 🚀 #TechLover | React.js Enthusiast 💻🚀 #CodingJourney</p>
-      <p>Email: <a href="mailto:uroojalvi4242@gmail.com">uroojalvi4242@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/urooj-fatima-90685a298">View Profile</a></p>
-    </header>
+  <div class="container">
+    <!-- Form Section -->
+    <section id="form-section">
+      <h1>Resume Builder</h1>
+      <form id="resume-form">
+        <!-- Personal Information -->
+        <h2>Personal Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
 
-    <section class="experience">
-      <h2>Experience</h2>
-      <p><strong>Product Designer</strong><br>Ecom Freedoms Company | 6 months</p>
-      <p>Developed user-centered design solutions and collaborated with cross-functional teams to enhance product features.</p>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="linkedin">LinkedIn URL:</label>
+        <input type="url" id="linkedin" name="linkedin">
+
+        <!-- Education -->
+        <h2>Education</h2>
+        <label for="education">Education:</label>
+        <textarea id="education" name="education" placeholder="Degree, University, Graduation Year" required></textarea>
+
+        <!-- Work Experience -->
+        <h2>Work Experience</h2>
+        <label for="experience">Experience:</label>
+        <textarea id="experience" name="experience" placeholder="Role, Company, Duration"></textarea>
+
+        <!-- Skills -->
+        <h2>Skills</h2>
+        <input type="text" id="skills" name="skills" placeholder="Comma-separated (e.g., HTML, CSS, JavaScript)" required>
+
+        <!-- Submit Button -->
+        <button type="submit">Generate Resume</button>
+      </form>
     </section>
 
-    <section class="education">
-      <h2>Education</h2>
-      <p><strong>BS in Computer Science</strong><br>Currently studying, 2nd Semester</p>
+    <!-- Resume Section -->
+    <section id="resume-section" style="display: none;">
+      <h1>Generated Resume</h1>
+      <div id="resume-content"></div>
+      <button onclick="resetForm()">Edit Information</button>
     </section>
-
-    <section class="courses">
-      <h2>Courses Completed</h2>
-      <ul>
-        <li>Graphic Designing and Video Editing - IBA University</li>
-        <li>React.js - Bano Qabil</li>
-      </ul>
-    </section>
-
-    <!-- Skills Button -->
-    <button id="toggleSkills">Show Skills</button>
-    <section class="skills" id="skillsSection">
-      <h2>Skills</h2>
-      <ul id="skills-list">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>TypeScript</li>
-        <li>React.js</li>
-      </ul>
-    </section>
-
-    <footer>
-      <p>Thank you for viewing my resume!</p>
-    </footer>
   </div>
 
   <script src="script.js"></script>

@@ -1,108 +1,49 @@
-/* General Styling */
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f5f7fa; /* Light grey-blue background */
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
   color: #333;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
-.resume-container {
+.container {
   max-width: 800px;
-  background-color: #ffffff; /* White background for resume */
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Header Styling */
-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.profile-pic {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover; /* Ensures the picture fills the frame */
-  margin-bottom: 10px;
-}
-
-h1 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2c3e50;
-  margin: 5px 0;
-}
-
-.title {
-  font-size: 16px;
-  color: #34495e;
-  font-weight: 500;
-}
-
-a {
-  color: #2980b9; /* Dark blue for links */
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Section Styling */
-section {
-  margin-top: 20px;
-}
-
-h2 {
-  font-size: 20px;
-  color: #2c3e50;
-  border-bottom: 2px solid #ecf0f1;
-  padding-bottom: 5px;
-  margin-bottom: 10px;
-}
-
-p, li {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #555;
-}
-
-/* Skills Button */
-button {
-  display: block;
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 500;
-  background-color: #3498db; /* Vibrant blue */
-  color: white;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: #4A90E2;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4A90E2;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 15px;
 }
 
 button:hover {
-  background-color: #2980b9;
-}
-
-/* Skills Section Styling */
-.skills {
-  display: none; /* Hide skills section by default */
-  margin-top: 15px;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: #95a5a6;
-  margin-top: 20px;
+  background-color: #357ABD;
 }
