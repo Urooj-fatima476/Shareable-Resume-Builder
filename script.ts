@@ -1,3 +1,4 @@
+// Define interfaces for capturing form data
 interface ResumeData {
   name: string;
   email: string;
@@ -7,9 +8,11 @@ interface ResumeData {
   skills: string[];
 }
 
+// Function to handle form submission
 function handleFormSubmit(event: Event): void {
   event.preventDefault();
 
+  // Capture form data
   const name = (document.getElementById("name") as HTMLInputElement).value;
   const email = (document.getElementById("email") as HTMLInputElement).value;
   const linkedin = (document.getElementById("linkedin") as HTMLInputElement).value;
@@ -17,66 +20,50 @@ function handleFormSubmit(event: Event): void {
   const experience = (document.getElementById("experience") as HTMLTextAreaElement).value;
   const skills = (document.getElementById("skills") as HTMLInputElement).value.split(",");
 
+  // Create resume data object
   const resumeData: ResumeData = { name, email, linkedin, education, experience, skills };
 
+  // Display resume
   displayResume(resumeData);
+
+  // Disable form fields to prevent editing
+  disableFormFields();
 }
 
+// Function to display the generated resume
 function displayResume(data: ResumeData): void {
+  // Get the resume content area
   const resumeContent = document.getElementById("resume-content") as HTMLElement;
 
+  // Populate the resume content
   resumeContent.innerHTML = `
-    <h2 contenteditable="true" oninput="updateField(this, 'name')">${data.name}</h2>
-    <p><strong>Email:</strong> <span contenteditable="true" oninput="updateField(this, 'email')">${data.email}</span></p>
-    <p><strong>LinkedIn:</strong> <a href="${data.linkedin}" target="_blank" contenteditable="true" oninput="updateField(this, 'linkedin')">${data.linkedin}</a></p>
+    <h2>${data.name}</h2>
+    <p><strong>Email:</strong> ${data.email}</p>
+    <p><strong>LinkedIn:</strong> <a href="${data.linkedin}" target="_blank">${data.linkedin}</a></p>
     <h3>Education</h3>
-    <p contenteditable="true" oninput="updateField(this, 'education')">${data.education}</p>
+    <p>${data.education}</p>
     <h3>Experience</h3>
-    <p contenteditable="true" oninput="updateField(this, 'experience')">${data.experience}</p>
+    <p>${data.experience}</p>
     <h3>Skills</h3>
-    <ul id="skills-list">
-      ${data.skills.map(skill => `<li contenteditable="true" oninput="updateSkill(this)">${skill.trim()}</li>`).join("")}
+    <ul>
+      ${data.skills.map(skill => `<li>${skill.trim()}</li>`).join("")}
     </ul>
   `;
 
+  // Show the resume section and hide the form
   document.getElementById("form-section")!.style.display = "none";
   document.getElementById("resume-section")!.style.display = "block";
 }
 
-function resetForm(): void {
-  document.getElementById("form-section")!.style.display = "block";
-  document.getElementById("resume-section")!.style.display = "none";
+// Function to disable form fields
+function disableFormFields(): void {
+  (document.getElementById("name") as HTMLInputElement).disabled = true;
+  (document.getElementById("email") as HTMLInputElement).disabled = true;
+  (document.getElementById("linkedin") as HTMLInputElement).disabled = true;
+  (document.getElementById("education") as HTMLTextAreaElement).disabled = true;
+  (document.getElementById("experience") as HTMLTextAreaElement).disabled = true;
+  (document.getElementById("skills") as HTMLInputElement).disabled = true;
 }
 
-// Function to update each field in the ResumeData object
-function updateField(element: HTMLElement, field: keyof ResumeData): void {
-  const resumeData = getResumeData();
-  if (field === "skills") {
-    resumeData.skills = element.innerText.split(",").map(skill => skill.trim());
-  } else {
-    resumeData[field] = element.innerText as string;
-  }
-  saveResumeData(resumeData);
-}
-
-// Function to update individual skills in the ResumeData object
-function updateSkill(element: HTMLElement): void {
-  const resumeData = getResumeData();
-  const skills = [].slice.call(document.querySelectorAll("#skills-list li")).map((el: HTMLElement) => el.textContent!.trim());
-  resumeData.skills = skills;
-  saveResumeData(resumeData);
-}
-
-// Retrieve resume data from session storage or return default data
-function getResumeData(): ResumeData {
-  const data = sessionStorage.getItem("resumeData");
-  return data ? JSON.parse(data) : { name: "", email: "", linkedin: "", education: "", experience: "", skills: [] };
-}
-
-// Save updated resume data to session storage
-function saveResumeData(data: ResumeData): void {
-  sessionStorage.setItem("resumeData", JSON.stringify(data));
-}
-
-// Attach form submit event
+// Attach event listener to the form
 document.getElementById("resume-form")!.addEventListener("submit", handleFormSubmit);
